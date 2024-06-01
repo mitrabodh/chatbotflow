@@ -1,0 +1,26 @@
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Style for reactflow */
+.reactflow {
+    height: 80%;
+    width: 100vw;
+}
+
+@media screen and (min-width:768px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .reactflow {
+        height: 100vh;
+    }
+
+}

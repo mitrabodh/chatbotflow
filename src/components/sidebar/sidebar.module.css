@@ -1,0 +1,49 @@
+/* Panel containing Node icons */
+.panel {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100vw;
+    max-height: 100px;
+    overflow-y: scroll;
+    padding: 10px;
+    border-top: 2px solid rgba(151, 147, 147, 0.3);
+}
+
+/* Node icon */
+.icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-sizing: content-box;
+    background-color: white;
+    border-radius: 5px;
+    min-width: fit-content;
+    max-height: 50px;
+    width: 90px;
+    min-height: fit-content;
+    box-shadow: 0 0 5px rgba(54, 32, 105, 0.3);
+}
+
+/* Node icon message */
+.icon p {
+    font-size: 14px;
+    color: rgb(54, 32, 105);
+    font-weight: 600;
+
+}
+
+@media screen and (min-width:768px) {
+    .panel {
+        flex-direction: column;
+        max-height: 100vh;
+        max-width: 300px;
+        border-top: none;
+        border-left: 2px solid rgba(151, 147, 147, 0.3);
+        margin-top: 50px;
+        width: 300px;
+        overflow-x: scroll;
+    }
+}

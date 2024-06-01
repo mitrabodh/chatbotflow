@@ -1,0 +1,27 @@
+.container {
+    position: absolute;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    background-color: rgba(151, 147, 147, 0.3);
+    z-index: 999;
+}
+
+/* Save Changes button */
+.save {
+    padding: 10px;
+    background-color: white;
+    color: rgb(54, 32, 105);
+    border-radius: 5px;
+    border: 2px solid rgba(54, 32, 105);
+    align-self: center;
+    margin-right: 15px;
+    margin-left: auto;
+}
+
+.save:hover {
+    border: 2px solid rgba(54, 32, 105, 0.6);
+    color: rgba(54, 32, 105, 0.6);
+}
