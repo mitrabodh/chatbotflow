@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from "./flowHead.module.css"
-export default function FlowHead() {
+import styles from "./header.module.css"
+export default function Header() {
     return (
         <div className={styles.container}>
             {/* Div for error display*/}
