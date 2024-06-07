@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useMemo } from 'react'
 import { useCallback, useState } from 'react'
-import ReactFlow, { Connection, Edge, EdgeChange, Node, NodeChange, addEdge, applyEdgeChanges, applyNodeChanges, MiniMap, Controls, ReactFlowProvider, ReactFlowInstance, XYPosition, Background } from 'reactflow'
+import ReactFlow, { useReactFlow, Connection, Edge, EdgeChange, Node, NodeChange, addEdge, applyEdgeChanges, applyNodeChanges, MiniMap, Controls, ReactFlowProvider, ReactFlowInstance, XYPosition, Background, useOnSelectionChange } from 'reactflow'
 import "reactflow/dist/style.css"
 import styles from "./Flow.module.css"
 import EmptyMsg from '../emptyMsg/EmptyMsg'
 import SendMessageNode from '../nodes/SendMessageNode'
-
+import "../nodes/Custom.css"
 
 
 const initialNodes: Node[] = [];
@@ -23,7 +23,8 @@ export default function Canvas({ onDragEnd, over, setOver }: { onDragEnd: any, o
     const [edges, setEdges] = useState<Edge<any>[]>([]);
     const [nodes, setNodes] = useState<Node<{ label: string }>[]>(initialNodes);
     const [reactFlowInstance, setReactFlowInstace] = useState<ReactFlowInstance | null>(null);
-
+    const [selectedNodes, setSelectedNodes] = useState([]);
+    const [selectedEdges, setSelectedEdges] = useState([]);
 
     // Handles changes in the array of Nodes as well as the position of the Nodes.
     const onNodesChange = useCallback((changes: NodeChange[]) => setNodes((nds: Node<{ label: string }>[]) => applyNodeChanges(changes, nds)), [setNodes]);
@@ -32,7 +33,13 @@ export default function Canvas({ onDragEnd, over, setOver }: { onDragEnd: any, o
     const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds: Edge<any>[]) => applyEdgeChanges(changes, eds)), [setEdges]);
 
     //Handles the connection between given Nodes by the edges.
-    const onConnect = useCallback((connection: Connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges]);
+    const onConnect = useCallback((params: Edge | Connection) => setEdges((eds) => addEdge({ ...params, style: { stroke: "rgba(43, 197, 197, 1)" } }, eds)), [setEdges]);
+
+    const onChange = useCallback(({ nodes, edges }: { nodes: any, edges: any }) => {
+        setSelectedNodes(nodes.map((nd: any) => nd.id));
+        setSelectedEdges(edges.map((ed: any) => ed.id));
+    }, []);
+
 
     let position: { x: number, y: number };
 
@@ -42,8 +49,6 @@ export default function Canvas({ onDragEnd, over, setOver }: { onDragEnd: any, o
     const onDragOver = useCallback((event: any) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = "move";
-
-
     }, []);
 
     const onDragEnter = () => {
@@ -93,10 +98,13 @@ export default function Canvas({ onDragEnd, over, setOver }: { onDragEnd: any, o
                     onConnect={onConnect}
                     nodeTypes={nodeTypes}
                     onDrop={onDrop}
+
+                    onSelectionChange={onChange}
                     onDragOver={onDragOver}
                     onDragEnter={onDragEnter}
                     fitView
                     style={over ? flowDragOverStyle : flowDragEndStyle}
+
                 >
                     <Controls />
                     <MiniMap />

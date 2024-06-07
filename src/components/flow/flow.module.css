@@ -13,6 +13,12 @@
     width: 100vw;
 }
 
+.connectLine {
+    background-color: red;
+}
+
+
+
 .dragOver {
     background-color: rgba(11, 81, 91, 0.1);
 }

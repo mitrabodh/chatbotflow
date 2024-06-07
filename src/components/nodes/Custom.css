@@ -1,0 +1,8 @@
+.react-flow__node.selected {
+    border: 2px solid rgba(50, 65, 229, 0.84);
+    border-radius: 5px;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+    stroke: rgba(50, 65, 229, 0.84);
+}

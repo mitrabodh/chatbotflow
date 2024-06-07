@@ -4,7 +4,6 @@ import styles from "./Icons.module.css";
 
 
 
-
 export default function Message({ onDragEnd }: { onDragEnd: any }) {
 
     const onDragStart = (event: any, nodeType: string) => {
