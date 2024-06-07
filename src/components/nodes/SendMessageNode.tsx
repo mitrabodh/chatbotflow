@@ -2,7 +2,7 @@ import React from 'react'
 import { Handle, Position } from "reactflow";
 import { AiOutlineMessage } from "react-icons/ai";
 import { RiWhatsappFill } from "react-icons/ri";
-import styles from "./send-msg-node.module.css"
+import styles from "./Send-msg-node.module.css"
 
 export default function SendMessageNode({ data }: { data: { label: string } }) {
     // data contains the data of the node which a Text Message in our app. The Text Message can be retrieved by accessing the label property of data object of the Node. 

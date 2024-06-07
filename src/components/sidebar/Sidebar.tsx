@@ -1,21 +1,13 @@
-import React from 'react'
-import { AiOutlineMessage } from "react-icons/ai";
-import styles from "./sidebar.module.css"
+import React, { SetStateAction } from 'react'
+import styles from "./Sidebar.module.css"
+import Message from '../icons/Message'
 
-export default function Sidebar() {
-    const onDragStart = (e: React.DragEvent<HTMLDivElement>, nodeType: string) => {
-        e.dataTransfer?.setData("application/node", nodeType);
-        if (e.dataTransfer) {
-            e.dataTransfer.effectAllowed = "move";
-        }
-    }
+
+export default function Sidebar({ onDragEnd }: { onDragEnd: any }) {
+
     return (
         <aside className={styles.panel}>
-            <div className={styles.icon} draggable onDragStart={(e) => onDragStart(e, "sendMsg")}>
-                <AiOutlineMessage size={30} color='rgb(54, 32, 105)' />
-                <p>Message</p>
-            </div>
-
+            <Message onDragEnd={onDragEnd} />
         </aside>
     )
 }
