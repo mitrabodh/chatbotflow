@@ -13,7 +13,7 @@ export default function SendMessageNode({ data }: { data: { label: string } }) {
     return (
         <div className={styles.customNode}>
             {/* Node source handle start */}
-            <Handle type="target" position={Position.Left} />
+            <Handle type="target" position={Position.Left} style={{ background: " rgba(50, 65, 229, 0.84)" }} />
             {/* Node source handle end */}
 
             {/* Node Header start */}
@@ -31,7 +31,7 @@ export default function SendMessageNode({ data }: { data: { label: string } }) {
             {/* Node Text Message end */}
 
             {/* Node target handle start */}
-            <Handle type="source" position={Position.Right} />
+            <Handle type="source" style={{ background: " rgba(50, 65, 229, 0.84)" }} position={Position.Right} />
             {/* Node target handle end */}
         </div>
     )

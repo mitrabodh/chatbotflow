@@ -6,3 +6,7 @@
 .react-flow__edge.selected .react-flow__edge-path {
     stroke: rgba(50, 65, 229, 0.84);
 }
+
+.react-flow__edge .react-flow__edge-path {
+    stroke: rgba(43, 197, 197, 1);
+}

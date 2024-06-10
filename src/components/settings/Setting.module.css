@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+
+}
+
+.header p {
+    align-self: auto;
+    margin-left: 10px;
+}
+
+.back {
+    background-color: inherit;
+    border: none;
+    font-size: 15px;
+}

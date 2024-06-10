@@ -12,13 +12,9 @@
     max-height: 50px;
     width: 90px;
     min-height: fit-content;
-    box-shadow: 0 0 5px rgba(54, 32, 105, 0.3);
+    border: 2px solid rgb(54, 32, 105);
 }
 
-
-.selected {
-    border: 3px solid red;
-}
 
 /* Node icon message */
 .icon p {
