@@ -19,8 +19,7 @@ const nodeTypes = { sendMsg: SendMessageNode };
 const edgeTypes = { customEdge: CustomEdge }
 
 
-export default function Canvas({ onDragEnd, over, setOver, setSelectedNodes }: { onDragEnd: any, over: string | null, setOver: any, setSelectedNodes: any }) {
-
+export default function Canvas({ onDragEnd, over, setOver, setSelectedNodes, selectedNodes }: { onDragEnd: any, over: string | null, setOver: any, setSelectedNodes: any, selectedNodes: string[] }) {
 
     const reactFlowWrapper = useRef(null);
     const [edges, setEdges] = useState<Edge<any>[]>([]);
@@ -36,18 +35,31 @@ export default function Canvas({ onDragEnd, over, setOver, setSelectedNodes }: {
     const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds: Edge<any>[]) => applyEdgeChanges(changes, eds)), [setEdges]);
 
 
+
     //A handle to manage the connection between given Nodes by the edges.
     const onConnect = useCallback((connection: Edge | Connection) => {
-        const edge = { ...connection, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(50, 65, 229, 0.84)" } };
+        const edge = { ...connection, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(43, 197, 197, 1)" } };
         setEdges((eds) => addEdge(edge, eds));
     }, [setEdges])
 
 
     //A handle to manage the selection of edges and nodes.
     const onChange = useCallback(({ nodes, edges }: { nodes: any, edges: any }) => {
-        setSelectedNodes(nodes.map((nd: any) => nd.id));
-        setSelectedEdges(edges.map((ed: any) => ed.id));
+        setSelectedNodes(nodes.map((node: Node) => node.id));
+        edges.map((e: any) => {
+            setEdges(eds => eds.map(el => el.id === e.id ? { ...el, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(50, 65, 229, 0.84)" } } : { ...el, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(43, 197, 197, 1)" } }))
+        })
+
     }, []);
+
+
+    //Restores the default color of the marker-end of an edge when the edge is deselected or out of focus.
+    const onBlur = () => {
+        edges.map((e: any) => {
+            setEdges(eds => eds.map(el => el.id === e.id ? { ...el, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(43, 197, 197, 1)" } } : { ...el, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(43, 197, 197, 1)" } }))
+        })
+    }
+
 
     let position: { x: number, y: number };
 
@@ -129,6 +141,7 @@ export default function Canvas({ onDragEnd, over, setOver, setSelectedNodes }: {
                     onDragEnter={onDragEnter}
                     onEdgeDoubleClick={onEdgeDoubleClick}
                     onNodeDoubleClick={onNodeDoubleClick}
+                    onBlur={onBlur}
                     fitView
                     style={over ? flowDragOverStyle : flowDragEndStyle}
                 >

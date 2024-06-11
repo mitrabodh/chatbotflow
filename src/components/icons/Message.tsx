@@ -4,7 +4,7 @@ import styles from "./Icons.module.css";
 
 
 
-export default function Message({ onDragEnd }: { onDragEnd: any }) {
+export default function Message({ onDragEnd, selectedNodes }: { onDragEnd: any, selectedNodes: string[] }) {
 
     const onDragStart = (event: any, nodeType: string) => {
         event.dataTransfer.setData("application/node", nodeType);

@@ -4,13 +4,13 @@ import Message from '../icons/Message'
 import Setting from '../settings/Setting'
 
 
-export default function Sidebar({ onDragEnd, selectedNodes, setSidebar, sidebar }: { onDragEnd: any, selectedNodes: any, setSidebar: any, sidebar: any }) {
+export default function Sidebar({ onDragEnd, selectedNodes, setSidebar, sidebar }: { onDragEnd: any, selectedNodes: string[], setSidebar: any, sidebar: any }) {
 
     useEffect(() => {
         if (selectedNodes.length > 0) {
-            setSidebar(<Setting setSidebar={setSidebar} onDragEnd={onDragEnd} />);
+            setSidebar(<Setting setSidebar={setSidebar} onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
         } else {
-            setSidebar(<Message onDragEnd={onDragEnd} />);
+            setSidebar(<Message onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
         }
     }, [selectedNodes])
 
