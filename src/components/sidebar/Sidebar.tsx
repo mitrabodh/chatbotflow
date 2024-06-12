@@ -1,14 +1,14 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import styles from "./Sidebar.module.css"
 import Message from '../icons/Message'
-import Setting from '../settings/Setting'
+import Settings from '../settings/Settings'
 
 
-export default function Sidebar({ onDragEnd, selectedNodes, setSidebar, sidebar }: { onDragEnd: any, selectedNodes: string[], setSidebar: any, sidebar: any }) {
+export default function Sidebar({ setText, onDragEnd, selectedNodes, setSidebar, sidebar }: { onDragEnd: any, selectedNodes: string[], setSidebar: any, sidebar: any, setText: any }) {
 
     useEffect(() => {
         if (selectedNodes.length > 0) {
-            setSidebar(<Setting setSidebar={setSidebar} onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
+            setSidebar(<Settings setText={setText} setSidebar={setSidebar} onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
         } else {
             setSidebar(<Message onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
         }

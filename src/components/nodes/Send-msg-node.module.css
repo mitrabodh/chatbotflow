@@ -3,6 +3,7 @@
     min-height: 40px;
     border-radius: 5px;
     width: 100px;
+    overflow-x: hidden;
     background-color: white;
     box-shadow: 0 0 10px rgba(116, 116, 117, 0.5);
 }
@@ -12,6 +13,7 @@
 .customNode>div:nth-child(3) {
     padding: 3px;
     font-size: 12px;
+
 }
 
 

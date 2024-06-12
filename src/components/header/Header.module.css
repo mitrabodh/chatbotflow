@@ -9,6 +9,31 @@
     z-index: 999;
 }
 
+.container>div:first-child {
+    display: none;
+    min-width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    left: 40%;
+    top: 50px;
+    transition: display 1s;
+}
+
+
+.container>div:first-child.error {
+    background-color: rgba(255, 0, 0, 0.7);
+    border: 1px solid red;
+    color: white;
+    display: block;
+}
+
+.container>div:first-child.pass {
+    background-color: green;
+    color: white;
+    display: block;
+}
+
 /* Save Changes button */
 .save {
     padding: 10px;
@@ -24,4 +49,10 @@
 .save:hover {
     border: 2px solid rgba(54, 32, 105, 0.6);
     color: rgba(54, 32, 105, 0.6);
+}
+
+@media screen and (max-width:470px) {
+    .container>div:first-child {
+        left: 33%;
+    }
 }

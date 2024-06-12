@@ -6,8 +6,16 @@
 }
 
 .header p {
-    align-self: auto;
+    position: relative;
     margin-left: 10px;
+    top: -2px;
+}
+
+
+span {
+    padding: 0px 3px 0px 3px;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 
 .back {
