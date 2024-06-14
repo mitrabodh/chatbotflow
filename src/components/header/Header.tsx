@@ -1,6 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Header.module.css"
-export default function Header({ clicked, setClas, clas, failure, saveFunction }: { failure: boolean, saveFunction: any, clicked: boolean, setClas: any, clas: any }) {
+import { save, resetClick } from '../../store/appSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store'
+
+export default React.memo(function Header() {
+
+    const clicked = useSelector((state: RootState) => state.app.clicked);
+    const failure = useSelector((state: RootState) => state.app.failure);
+    const [clas, setClas] = useState("");
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (clicked) {
@@ -10,9 +20,17 @@ export default function Header({ clicked, setClas, clas, failure, saveFunction }
                 setClas(styles.pass);
             }
         } else {
-            setClas("")
+            setClas("");
         }
     }, [clicked])
+
+    //onSave() function triggers as the "Save Changes" button is clicked.
+    function onSave() {
+        dispatch(save());
+        setTimeout(() => {
+            dispatch(resetClick());
+        }, 2000)
+    }
 
 
     return (
@@ -25,7 +43,7 @@ export default function Header({ clicked, setClas, clas, failure, saveFunction }
             {/* Save Changes button */}
             <button className={styles.save}
                 //  onClick={saveFunction}
-                type='submit' onClick={saveFunction}>Save Changes</button>
+                type='submit' onClick={() => onSave()}>Save Changes</button>
         </div>
     )
-}
+})

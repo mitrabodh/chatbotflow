@@ -1,16 +1,24 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from "./Sidebar.module.css"
 import Message from '../icons/Message'
 import Settings from '../settings/Settings'
+import { setSidebar } from '../../store/appSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
 
 
-export default function Sidebar({ setText, onDragEnd, selectedNodes, setSidebar, sidebar }: { onDragEnd: any, selectedNodes: string[], setSidebar: any, sidebar: any, setText: any }) {
+export default React.memo(function Sidebar() {
+
+    const dispatch = useDispatch();
+
+    const selectedNodes = useSelector((state: RootState) => state.app.selectedNodes)
+    const sidebar = useSelector((state: RootState) => state.app.sidebar);
 
     useEffect(() => {
         if (selectedNodes.length > 0) {
-            setSidebar(<Settings setText={setText} setSidebar={setSidebar} onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
+            dispatch(setSidebar(<Settings />));
         } else {
-            setSidebar(<Message onDragEnd={onDragEnd} selectedNodes={selectedNodes} />);
+            dispatch(setSidebar(<Message />));
         }
     }, [selectedNodes])
 
@@ -19,4 +27,4 @@ export default function Sidebar({ setText, onDragEnd, selectedNodes, setSidebar,
             {sidebar}
         </aside>
     )
-}
+})

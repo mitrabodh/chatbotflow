@@ -7,8 +7,9 @@ import "reactflow/dist/style.css"
 import "./Custom.css"
 
 
-export default function SendMessageNode({ id, data }: { id: string, data: { label: string } }) {
+export default React.memo(function SendMessageNode({ id, data }: { id: string, data: { label: string } }) {
     // data contains the data of the node which a Text Message in our app. The Text Message can be retrieved by accessing the label property of data object of the Node. 
+
 
     return (
         <div className={styles.customNode}>
@@ -35,4 +36,4 @@ export default function SendMessageNode({ id, data }: { id: string, data: { labe
             {/* Node target handle end */}
         </div>
     )
-}
+})
