@@ -2,23 +2,19 @@ import React, { useEffect } from 'react'
 import styles from "./Sidebar.module.css"
 import Message from '../icons/Message'
 import Settings from '../settings/Settings'
-import { setSidebar } from '../../store/appSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import useApp from '../../context/AppContext'
+
 
 
 export default React.memo(function Sidebar() {
 
-    const dispatch = useDispatch();
-
-    const selectedNodes = useSelector((state: RootState) => state.app.selectedNodes)
-    const sidebar = useSelector((state: RootState) => state.app.sidebar);
+    const { setSidebar, sidebar, selectedNodes } = useApp();
 
     useEffect(() => {
         if (selectedNodes.length > 0) {
-            dispatch(setSidebar(<Settings />));
+            setSidebar(<Settings />);
         } else {
-            dispatch(setSidebar(<Message />));
+            setSidebar(<Message />);
         }
     }, [selectedNodes])
 

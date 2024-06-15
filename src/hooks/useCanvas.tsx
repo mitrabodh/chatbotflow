@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useCallback, useState } from 'react'
 import ReactFlow, { Connection, Edge, EdgeChange, Node, NodeChange, addEdge, applyEdgeChanges, applyNodeChanges, ReactFlowInstance, MarkerType, getConnectedEdges } from 'reactflow'
-import { useDispatch, useSelector } from 'react-redux'
-import { setOver, setError, setSelectedNodes } from '../store/appSlice'
-import { RootState } from '../store/store'
+import useApp from '../context/AppContext'
 
 
 
@@ -25,18 +23,15 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
     const onConnect = useCallback((connection: Edge | Connection) => {
         const edge = { ...connection, markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: "rgba(50, 65, 229, 0.84)" } };
         setEdges((eds) => addEdge(edge, eds));
-    }, [setEdges])
+    }, [setEdges]);
 
-    const dispatch = useDispatch();
 
-    const text = useSelector((state: RootState) => state.app.text);
-    const over = useSelector((state: RootState) => state.app.over);
-    const selectedNodes = useSelector((state: RootState) => state.app.selectedNodes);
+    const { selectedNodes, setSelectedNodes, text, over, setOver, setError } = useApp();
 
 
     //A handle to manage the selection of edges and nodes.
     const onChange = useCallback(({ nodes, edges }: { nodes: any, edges: any }) => {
-        dispatch(setSelectedNodes(nodes.map((node: Node) => node.id)));
+        setSelectedNodes(nodes.map((node: Node) => node.id));
         setSelectedEdges(edges.map((edge: Edge) => edge.id));
     }, []);
 
@@ -56,14 +51,14 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
 
 
     const onDragEnter = () => {//A handle for drag end event.
-        dispatch(setOver("over"))
+        setOver("over");
     }
 
 
     const onDrop = useCallback((event: any) => {//A handle for drop event.
         event.preventDefault();
         const type = event.dataTransfer.getData("application/node");
-        dispatch(setOver(""));
+        setOver("");
 
         if (typeof type === "undefined" || !type) {
             return;
@@ -130,13 +125,13 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
 
         if ((totalNodes.length > 1) && ((uniqueTargetNodes.length + 1) < (totalNodes.length))) {
             //Checks if one plus the number of current nodes each of which is having a non-empty target handle is less than the number of current nodes. If it's less that means more than one node is having an empty target handle; in that case, we set the value of 'error' as true to show an error message to the client.
-            dispatch(setError(true));
+            setError(true);
 
         } else if (totalNodes.length === 0) {
             //Shows an error message to the client if the client clicks on 'Save Changes' button without adding any node to the canvas.
-            dispatch(setError(true));
+            setError(true);
         } else {
-            dispatch(setError(false));
+            setError(false);
         }
     }, [nodes, setNodes, edges, setEdges]);
 

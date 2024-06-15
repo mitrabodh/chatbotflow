@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./Header.module.css"
-import { save, resetClick } from '../../store/appSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store'
+import useApp from '../../context/AppContext';
+
 
 export default React.memo(function Header() {
 
-    const clicked = useSelector((state: RootState) => state.app.clicked);
-    const failure = useSelector((state: RootState) => state.app.failure);
+    const { clicked, failure, save, resetClick } = useApp();
+
     const [clas, setClas] = useState("");
 
-    const dispatch = useDispatch();
+
 
     useEffect(() => {
         if (clicked) {
@@ -26,9 +25,9 @@ export default React.memo(function Header() {
 
     //onSave() function triggers as the "Save Changes" button is clicked.
     function onSave() {
-        dispatch(save());
+        save();
         setTimeout(() => {
-            dispatch(resetClick());
+            resetClick();
         }, 2000)
     }
 
