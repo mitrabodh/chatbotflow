@@ -3,6 +3,7 @@
 A chatbot flow is built by connecting multiple messages together to decide the order of execution. 
 Note: As of now, the drag and drop functionality of the app only works on a laptop or a desktop and does not work on mobile (touch) devices.
 
+
 ## Features:
 1. ### Text Node
 
@@ -46,3 +47,5 @@ Note: As of now, the drag and drop functionality of the app only works on a lapt
     a. Button to save the flow.
 
     b. Save button press will show an error if there are more than one Nodes and more than one Node has empty target handles.
+   
+### The secondary branch implements redux-toolkit whereas the main branch uses Context-API with useReducer to manage the states. In my opinion, the use of Context-API with useReducer is a better choice for this app.
