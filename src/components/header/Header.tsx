@@ -10,7 +10,6 @@ export default React.memo(function Header() {
     const [clas, setClas] = useState("");
 
 
-
     useEffect(() => {
         if (clicked) {
             if (failure) {
@@ -23,7 +22,7 @@ export default React.memo(function Header() {
         }
     }, [clicked])
 
-    //onSave() function triggers as the "Save Changes" button is clicked.
+    //The onSave() function triggers as the "Save Changes" button is clicked.
     function onSave() {
         save();
         setTimeout(() => {
@@ -36,12 +35,11 @@ export default React.memo(function Header() {
         <div className={styles.container}>
             {/* Div for error display*/}
             <div className={failure ? `${clas}` : `${clas}`}>
-                {failure ? "An error occurred!" : "Changes have been saved!"}
+                {failure ? "Can't save the Flow!" : "The Flow has been saved!"}
             </div>
 
             {/* Save Changes button */}
             <button className={styles.save}
-                //  onClick={saveFunction}
                 type='submit' onClick={() => onSave()}>Save Changes</button>
         </div>
     )

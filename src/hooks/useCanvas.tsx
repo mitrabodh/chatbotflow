@@ -4,7 +4,6 @@ import ReactFlow, { Connection, Edge, EdgeChange, Node, NodeChange, addEdge, app
 import useApp from '../context/AppContext'
 
 
-
 export default function useCanvas(initialNodes: Node[], getId: any) {
     const reactFlowWrapper = useRef(null);
     const [edges, setEdges] = useState<Edge<any>[]>([]);
@@ -26,6 +25,7 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
     }, [setEdges]);
 
 
+    //Getting necessary dispatch functions and variables from the useApp hook.
     const { selectedNodes, setSelectedNodes, text, over, setOver, setError } = useApp();
 
 
@@ -38,10 +38,10 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
 
     let position: { x: number, y: number };
 
-    let flowDragOverStyle = { backgroundColor: "rgba(50, 105, 168,0.3)" };// reactFlow canvas background color changes as we drag a node icon over the canvas.
+    let flowDragOverStyle = { backgroundColor: "rgba(50, 105, 168,0.3)" };// ReactFlow canvas background color changes as we drag a node icon over the canvas.
 
 
-    let flowDragEndStyle = { backgroundColor: "white" };// reactFlow canvas background color turns normal as the drag event ends or a custom node is dropped on the canvas.
+    let flowDragEndStyle = { backgroundColor: "white" };// ReactFlow canvas background color turns normal as the drag event ends or a custom node is dropped on the reactFlow canvas.
 
 
     const onDragOver = useCallback((event: any) => {//A handle for drag over event.
@@ -60,10 +60,12 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
         const type = event.dataTransfer.getData("application/node");
         setOver("");
 
+        //If the type of the node being dropped is undefined or the type itself is missing, the drop function returns without doing anything.
         if (typeof type === "undefined" || !type) {
             return;
         }
 
+        //The screenToFlowPosition method of a reactFlowInstance transforms client coordinates to flow coordinates.
         if (reactFlowInstance) {
             position = reactFlowInstance.screenToFlowPosition({
                 x: event.clientX,
@@ -74,6 +76,7 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
             return;
         }
 
+        //A new instance of the node is created and added to the array of current node instances.
         const newNode = {
             id: getId(),
             type,
@@ -86,9 +89,8 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
     }, [reactFlowInstance]);
 
 
-
+    //Updates the text message on a node when the node is selected and the text in the textarea of settings panel changes.
     useEffect(() => {
-        //Updates text message on a custom node when the node is selected and the text in the textarea of settings panel changes.
         setNodes((nds) => {
             return nds.map((node: Node) => {
                 if (selectedNodes.includes(node.id)) {
@@ -116,8 +118,8 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
 
     const uniqueTargetNodes = Array.from(setTargetNodes);//A set of unique nodes, where each node has a non-empty target handle is converted into an array of the same.
 
+    //returns an array of the current nodes.
     const totalNodes = nodes.map(el => {
-        //returns an array of the current nodes.
         return el.id;
     });
 
@@ -137,15 +139,13 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
 
 
 
-
+    //Deletes an edge on double click.
     const onEdgeDoubleClick = (_: any, edge: Edge) => {
-        //Deletes an edge on double click.
         setEdges((eds) => eds.filter((e) => e.id !== edge.id));
     }
 
-
+    //Deletes any edge associated to the target node to be deleted.
     const onNodeDoubleClick = (_: any, node: Node) => {
-        //Deletes any edge associated to the target node to be deleted.
         totalEdges.map((ed) => {
             if (ed.target === node.id || ed.source === node.id) {
                 setEdges((eds) => eds.filter((el) => el.id !== ed.id));

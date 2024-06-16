@@ -4,11 +4,10 @@ import styles from "./Icons.module.css";
 import useApp from '../../context/AppContext';
 
 
-
-
 export default function Message() {
 
     const { onDragEnd } = useApp();
+
 
     const onDragStart = (event: any, nodeType: string) => {
         event.dataTransfer.setData("application/node", nodeType);
