@@ -51,14 +51,14 @@ Link to the working version of the app: https://chatbotflow-sepia.vercel.app/
 
 ## Tech Stack:
     The chatbotflow app built in typescript with the help of the react and reactFlow library. 
-    In the main branch the states of the application are managed by using the Context API coupled with the useReducer. 
-    In the secondary branch of the repository states are shown to be managed by the redux toolkit. 
+    In the 'main' branch of this repository the states of the application are shown to be managed by using the Context API coupled with the useReducer. 
+    In the 'secondary' branch of the repository states are shown to be managed by the redux toolkit. 
     HTML drag and drop API was utilized to add the drag and drop functionality to the app. Modular CSS approach was adopted to style the components of the application.
 
 ## How to use the Application:
     1. Drag and Drop the text node icon from the side panel to the canvas. As soon as you drop the icon, the relevant node appears on the canvas. 
-    2. You can drop more than two nodes on the canvas to connect them with each other. 
-    3. The connection line between the nodes is called the edge. You can draw an edge from a source handle, which is attached to the right hand side of the every node, and connect that edge to the target handle which is attached to the left hand side of the every node.
+    2. You can drop more than one nodes on the canvas to connect them with each other. 
+    3. The connection line between the nodes is called the edge. You can draw an edge from a source handle, which is attached to the right hand side of the every node, and connect that edge to the target handle, which is attached to the left hand side of the every node.
     4. To select a node or an edge just click on it.
     5. To delete an edge or a node just doubleclick on it.
     6. To edit the message on a node you just need to click on that node to open a settings panel from where you can edit the text message on the selected node/s.  
@@ -66,4 +66,4 @@ Link to the working version of the app: https://chatbotflow-sepia.vercel.app/
     8. If there are more than one nodes on the canvas and more than one nodes have an empty target handle, an error message will pop up after clicking on the 'Save Changes' button.
 
 ## About the test:
-    I did not add test files to the code because the majority of the app is built with a third party library and therefore it might not be feasible to test many of its functionalities as they are handled internally by the third party library itself. 
+    I did not add test files to the codebase because the majority of the app is built with a third party library and therefore it might not be feasible to test many of its functionalities as they are handled internally by the third party library itself. 
