@@ -62,8 +62,8 @@ Link to the working version of the app: https://chatbotflow-sepia.vercel.app/
     4. To select a node or an edge just click on it.
     5. To delete an edge or a node just doubleclick on it.
     6. To edit the message on a node you just need to click on that node to open a settings panel from where you can edit the text message on the selected node/s.  
-    6. If you click on the 'Save Changes' button, which is present on the top right corner of the app, it will either show a success message or an error message.
-    7. If there are more than one nodes on the canvas and more than one nodes have an empty target handle, an error message will pop up after clicking on the 'Save Changes' button.
+    7. If you click on the 'Save Changes' button, which is present on the top right corner of the app, it will either show a success message or an error message.
+    8. If there are more than one nodes on the canvas and more than one nodes have an empty target handle, an error message will pop up after clicking on the 'Save Changes' button.
 
 ## About the test:
     I did not add test files to the code because the majority of the app is built with a third party library and therefore it might not be feasible to test many of its functionalities as they are handled internally by the third party library itself. 
