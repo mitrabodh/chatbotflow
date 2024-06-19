@@ -37,6 +37,7 @@ export default React.memo(function Header() {
             <div className={failure ? `${clas}` : `${clas}`}>
                 {failure ? "Can't save the Flow!" : "The Flow has been saved!"}
             </div>
+            <p>Doubleclick on a node or an edge to delete it.</p>
 
             {/* Save Changes button */}
             <button className={styles.save}

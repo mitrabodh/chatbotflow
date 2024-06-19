@@ -17,7 +17,7 @@ export default function Message() {
 
     return (
 
-        <div className={styles.icon} draggable onDragEnd={() => onDragEnd()} onDragStart={(event) => onDragStart(event, "sendMsg")}  >
+        <div data-testid="message-icon" className={styles.icon} draggable onDragEnd={() => onDragEnd()} onDragStart={(event) => onDragStart(event, "sendMsg")}  >
             <AiOutlineMessage size={30} color='rgb(54, 32, 105)' />
             <p>Message</p>
         </div>
