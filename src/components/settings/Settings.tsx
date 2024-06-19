@@ -17,7 +17,7 @@ export default function Settings() {
                 <p>Message</p>
             </div>
             <textarea name="text-message" defaultValue="message" onChange={(e) => setText(e.target.value)} placeholder="write your message here." id=""></textarea>
-            <p>Please press <span>Enter</span> if length of the text message exceeds width of the node.</p>
+            <p>Please press <span>Enter</span> if the length of the text message exceeds the width of the node.</p>
         </div>
     )
 }
