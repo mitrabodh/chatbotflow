@@ -50,7 +50,7 @@ Link to the working version of the app: https://chatbotflow-sepia.vercel.app/
     b. Save button press will show an error if there are more than one Nodes and more than one Node has empty target handles.
 
 ## Tech Stack:
-    The chatbotflow app built in typescript with the help of the react and reactFlow library. 
+    The chat bot flow builder app is built in typescript with the help of the react and reactFlow library. 
     In the 'main' branch of this repository the states of the application are shown to be managed by using the Context API coupled with the useReducer. 
     In the 'secondary' branch of the repository states are shown to be managed by the redux toolkit. 
     HTML drag and drop API was utilized to add the drag and drop functionality to the app. Modular CSS approach was adopted to style the components of the application.
