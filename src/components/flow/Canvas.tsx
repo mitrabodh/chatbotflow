@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactFlow, { Node, MiniMap, Controls, ReactFlowProvider } from 'reactflow'
-import "reactflow/dist/style.css"
-import styles from "./Flow.module.css"
-import EmptyMsg from '../emptyMsg/EmptyMsg'
-import SendMessageNode from '../nodes/SendMessageNode'
-import CustomEdge from '../edges/CustomEdge'
-import "../nodes/Custom.css"
-import useCanvas from '../../hooks/useCanvas'
+import React from 'react';
+import ReactFlow, { Node, MiniMap, Controls, ReactFlowProvider } from 'reactflow';
+import "reactflow/dist/style.css";
+import styles from "./Flow.module.css";
+import EmptyMsg from '../emptyMsg/EmptyMsg';
+import SendMessageNode from '../nodes/SendMessageNode';
+import CustomEdge from '../edges/CustomEdge';
+import "../nodes/Custom.css";
+import useCanvas from '../../hooks/useCanvas';
 
 
 const initialNodes: Node[] = [];
@@ -16,7 +16,7 @@ let id = 0;
 const getId = () => `node-${id++}`;
 
 const nodeTypes = { sendMsg: SendMessageNode };
-const edgeTypes = { customEdge: CustomEdge }
+const edgeTypes = { customEdge: CustomEdge };
 
 
 export default function Canvas() {
@@ -51,5 +51,5 @@ export default function Canvas() {
                 </ReactFlow>
             </div>
         </ReactFlowProvider>
-    )
+    );
 }
