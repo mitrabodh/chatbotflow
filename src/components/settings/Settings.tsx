@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { IoArrowBackSharp } from "react-icons/io5";
-import style from "./Settings.module.css"
+import style from "./Settings.module.css";
 import Message from '../icons/Message';
 import useApp from '../../context/AppContext';
 
@@ -19,5 +19,5 @@ export default function Settings() {
             <textarea name="text-message" defaultValue="message" onChange={(e) => setText(e.target.value)} placeholder="write your message here." id=""></textarea>
             <p>Please press <span>Enter</span> if the length of the text message exceeds the width of the node.</p>
         </div>
-    )
+    );
 }
