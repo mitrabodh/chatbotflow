@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { useCallback, useState } from 'react'
-import ReactFlow, { Connection, Edge, EdgeChange, Node, NodeChange, addEdge, applyEdgeChanges, applyNodeChanges, ReactFlowInstance, MarkerType, getConnectedEdges } from 'reactflow'
-import useApp from '../context/AppContext'
+import React, { useEffect, useRef } from 'react';
+import { useCallback, useState } from 'react';
+import ReactFlow, { Connection, Edge, EdgeChange, Node, NodeChange, addEdge, applyEdgeChanges, applyNodeChanges, ReactFlowInstance, MarkerType, getConnectedEdges } from 'reactflow';
+import useApp from '../context/AppContext';
 
 
 export default function useCanvas(initialNodes: Node[], getId: any) {
@@ -102,7 +102,7 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
                 return node;
             })
         });
-    }, [text, setNodes])
+    }, [text, setNodes]);
 
 
 
@@ -142,7 +142,7 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
     //Deletes an edge on double click.
     const onEdgeDoubleClick = (_: any, edge: Edge) => {
         setEdges((eds) => eds.filter((e) => e.id !== edge.id));
-    }
+    };
 
     //Deletes any edge associated to the target node to be deleted.
     const onNodeDoubleClick = (_: any, node: Node) => {
@@ -150,7 +150,7 @@ export default function useCanvas(initialNodes: Node[], getId: any) {
             if (ed.target === node.id || ed.source === node.id) {
                 setEdges((eds) => eds.filter((el) => el.id !== ed.id));
             }
-        })
+        });
 
         //Deletes the target node.
         setNodes((nds) => nds.filter((e) => e.id !== node.id));
