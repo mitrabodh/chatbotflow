@@ -1,8 +1,8 @@
-import React from 'react'
-import Sidebar from '../sidebar/Sidebar'
-import styles from "./Flow.module.css"
-import Canvas from './Canvas'
-import Header from '../header/Header'
+import React from 'react';
+import Sidebar from '../sidebar/Sidebar';
+import styles from "./Flow.module.css";
+import Canvas from './Canvas';
+import Header from '../header/Header';
 
 
 export default function Flow() {
@@ -15,6 +15,6 @@ export default function Flow() {
                 <Sidebar />
             </div >
         </>
-    )
+    );
 }
 
