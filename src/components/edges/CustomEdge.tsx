@@ -15,5 +15,5 @@ export default function CustomEdge({ id, sourceX, sourceY, sourcePosition, targe
         <>
             <BaseEdge id={id} path={edgePath} />
         </>
-    )
+    );
 }
