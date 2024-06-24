@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { AiOutlineMessage } from "react-icons/ai";
 import styles from "./Icons.module.css";
 import useApp from '../../context/AppContext';
@@ -22,5 +22,5 @@ export default function Message() {
             <p>Message</p>
         </div>
 
-    )
+    );
 }
