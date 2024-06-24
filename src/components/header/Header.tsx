@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import styles from "./Header.module.css"
+import React, { useEffect, useState } from 'react';
+import styles from "./Header.module.css";
 import useApp from '../../context/AppContext';
 
 
@@ -20,14 +20,14 @@ export default React.memo(function Header() {
         } else {
             setClas("");
         }
-    }, [clicked])
+    }, [clicked]);
 
     //The onSave() function triggers as the "Save Changes" button is clicked.
     function onSave() {
         save();
         setTimeout(() => {
             resetClick();
-        }, 2000)
+        }, 2000);
     }
 
 
@@ -43,5 +43,5 @@ export default React.memo(function Header() {
             <button className={styles.save}
                 type='submit' onClick={() => onSave()}>Save Changes</button>
         </div>
-    )
+    );
 })
