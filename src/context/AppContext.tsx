@@ -11,7 +11,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             state.failure = true;
         } else {
             state.failure = false;
-        };
+        }
         dispatch({
             type: "SAVE",
         });
